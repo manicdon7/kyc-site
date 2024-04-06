@@ -40,7 +40,7 @@ function SearchPage() {
                    Manikandan
                 </th>
                 <td class="px-6 py-4">
-                    pochumani
+                   goodboy
                 </td>
                 <td class="px-6 py-4">
                     d5g41t4g1g
