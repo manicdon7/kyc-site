@@ -1,12 +1,10 @@
 import React from 'react';
-
+import Img from '../assets/image.png';
 function Form() {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
-      
-      
       <div className="sm:mx-auto sm:w-full sm:max-w-sm" >
-        <img className="mx-auto h-16 w-auto" src="https://static.vecteezy.com/system/resources/previews/010/213/047/non_2x/kyc-letter-technology-logo-design-on-white-background-kyc-creative-initials-letter-it-logo-concept-kyc-letter-design-vector.jpg" alt="Your Company" />
+        <img className="mx-auto h-28 w-auto" src={Img} alt="Your Company" />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Enter your details</h2>
       </div>
 
