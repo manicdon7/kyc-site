@@ -2,8 +2,8 @@ import React from 'react';
 
 function Navbar() {
   return (
-    <div className="navclass px-5 pt-4">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-slate-950" style={{ paddingTop: '10px', paddingRight: '20px', paddingLeft: '20px', borderRadius: '10px' }}>
+    <div className="navclass ">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-slate-950">
         <div className="container-fluid">
           <h1 className="font-semibold text-white pr-9">KYC3</h1>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span className="navbar-toggler-icon"></span> </button>
