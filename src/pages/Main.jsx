@@ -1,5 +1,5 @@
 import React ,{useState} from 'react';
-import videoBg from '../assets/videoBg.mp4';
+import videoBg from '../assets/videoBg1.mp4';
 import "../index.css";
 import { useNavigate } from 'react-router-dom';
 import Verifypage from './Verifypage';
