@@ -54,13 +54,14 @@ function SearchPage() {
         return address;
     };
 
+
     const handleSearch = async () => {
         try {
             const nftContractAddress = "0x43b0f494f588a0cf8e122e75e6d75584aa27301b";
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             const nftContract = new ethers.Contract(nftContractAddress, nftContractABI, signer);
-            const tokenURI = `https://ipfs.io/ipfs/${searchedUserId.transactionAddress}`;
+            const tokenURI = `https://ipfs.io/ipfs/QmPcnohDeaZLnn7vwrYniHoHTDi7ZJeu62KBgcBXEvviev`;
 const tokenId = await nftContract.proof(address, tokenURI, searchedUserId.userId, searchedUserId.name, searchedUserId.transactionAddress);
             toast.success(`NFT minted successfully for user ${searchedUserId.userId} as proof of work.`);
             const tokenMetadata = await nftContract.getNFTMetadata(tokenId);
