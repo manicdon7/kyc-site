@@ -55,40 +55,24 @@ function SearchPage() {
     };
 
     const handleSearch = async () => {
-        const user = kycData.find(data => data.userId === searchedUserId);
-        if (user) {
-            const userAddress = generateUserAddress(user.userId);
+        try {
+            const nftContractAddress = "0x43b0f494f588a0cf8e122e75e6d75584aa27301b";
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
-            const signerAddress = await signer.getAddress();
-            
-            if (signerAddress === address || signerAddress === userAddress) {
-                try {
-                    const nftContractAddress = "0x43B0F494f588A0CF8E122E75E6D75584aA27301b";
-    
-                    const nftContract = new ethers.Contract(nftContractAddress, nftContractABI, signer);
-
-                    const tokenURI = `https://ipfs.io/ipfs/${user.transactionAddress}`;
-                    const tokenId = await nftContract.proof(address, tokenURI, user.userId, user.name, user.transactionAddress);
-                    toast.success(`NFT minted successfully for user ${user.userId} as proof of work.`);
-                    
-                    const tokenMetadata = await nftContract.getNFTMetadata(tokenId);
-                    setSearchResult({ userId: tokenMetadata.userId, userName: tokenMetadata.userName, userAddress: tokenMetadata.userAddress, verified: true });
-                } catch (error) {
-                    console.error('Error minting NFT:', error);
-                    toast.error('Error minting NFT:', error);
-                }
-            } else {
-                toast.error('You are not authorized to mint an NFT for this user.');
-            }
+            const nftContract = new ethers.Contract(nftContractAddress, nftContractABI, signer);
+            const tokenURI = `https://ipfs.io/ipfs/${searchedUserId.transactionAddress}`;
+const tokenId = await nftContract.proof(address, tokenURI, searchedUserId.userId, searchedUserId.name, searchedUserId.transactionAddress);
+            toast.success(`NFT minted successfully for user ${searchedUserId.userId} as proof of work.`);
+            const tokenMetadata = await nftContract.getNFTMetadata(tokenId);
+            setSearchResult({ userId: tokenMetadata.userId, userName: tokenMetadata.userName, userAddress: tokenMetadata.userAddress, verified: true });
+        } catch (error) {
+            console.error('Error minting NFT:', error);
+            toast.error('Error minting NFT:', error);
         }
     };
     
     
     
-    
-    
-
     const handleBack = () => {
         setSearchResult(null);
     };
@@ -119,7 +103,7 @@ function SearchPage() {
                         <div className="flex justify-center">
                             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
                                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <thead className="text-xs text-black uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" className="px-6 py-3">
                                                 S.No
@@ -133,15 +117,21 @@ function SearchPage() {
                                             <th scope="col" className="px-6 py-3">
                                                 Verified
                                             </th>
+                                            <th scope="col" className="px-6 py-3">
+                                                Actions
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {kycData.map((data, index) => (
-                                            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <tr key={index} className="bg-white border-b text-black text-xl dark:bg-gray-800 dark:border-gray-700">
                                                 <td className="px-6 py-4">{index + 1}</td>
                                                 <td className="px-6 py-4">{data.userId}</td>
                                                 <td className="px-6 py-4">{data.name}</td>
                                                 <td className="px-6 py-4">{data.verified ? 'Verified' : 'Not Verified'}</td>
+                                                <td className="px-6 py-4">
+                                                    <button onClick={handleSearch} className="bg-indigo-500 text-white rounded-lg font-semibold px-6 py-2 mt-4 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none">Mint NFT</button>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
