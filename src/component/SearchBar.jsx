@@ -20,7 +20,7 @@ function SearchPage() {
             const signer = provider.getSigner();
             const address = await signer.getAddress();
             setAddress(address);
-            const myContractAddress = "0xA50e1985D9790F5C6Bae73e327Bcf2B2148a93F4";
+            const myContractAddress = "0x51d6836fe85daf042168624BC2a18e7B4Ee1DEEf";
             const contract = new ethers.Contract(
               myContractAddress,
               Abi,
