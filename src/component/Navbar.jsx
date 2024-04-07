@@ -1,4 +1,5 @@
 import React from 'react';
+import Connect from './Connect';
 
 function Navbar() {
   return (
@@ -24,6 +25,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
+        <Connect />
         </div>
       </nav>
     </div>
