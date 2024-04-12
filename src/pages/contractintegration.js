@@ -11,6 +11,7 @@ async function userIdExists(contract, userId) {
     }
 }
 
+
 // Function to get KYC data by signer address
 async function getKYCDataBySigner(contract, signerAddress) {
     try {
